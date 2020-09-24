@@ -25,30 +25,30 @@ resource "aws_ecs_task_definition" "app" {
   container_definitions    = <<DEFINITION
 [
   {
-    "name": "${project}-app",
-    "image": "${app_image}",
-    "cpu": ${fargate_cpu},
-    "memory": ${fargate_memory},
+    "name": "${var.project}-app",
+    "image": "${var.app_image}",
+    "cpu": ${var.fargate_cpu},
+    "memory": ${var.fargate_memory},
     "networkMode": "awsvpc",
     "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
-          "awslogs-group": "/ecs/${project}-app",
-          "awslogs-region": "${aws_region}",
+          "awslogs-group": "/ecs/${var.project}-app",
+          "awslogs-region": "${var.aws_region}",
           "awslogs-stream-prefix": "ecs"
         }
     },
     "portMappings": [
       {
-        "containerPort": ${app_port},
-        "hostPort": ${app_port}
+        "containerPort": ${var.app_port},
+        "hostPort": ${var.app_port}
       }
     ],
     "mountPoints": [
       {
         "readOnly": null,
         "containerPath": "/app/storage/tmp",
-        "sourceVolume": "${project}-mp"
+        "sourceVolume": "${var.project}-mp"
       }
     ]
   }
