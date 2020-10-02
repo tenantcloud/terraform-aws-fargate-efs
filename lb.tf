@@ -1,7 +1,10 @@
 resource "aws_lb" "main" {
   name            = "${var.project}-load-balancer"
   subnets         = var.subnets_public
-  security_groups = [aws_security_group.lb.id]
+  //security_groups = [aws_security_group.lb.id]
+  tags = {
+    Name = "${var.project}-load-balancer"
+  }
 }
 
 resource "aws_lb_target_group" "app" {
@@ -19,6 +22,9 @@ resource "aws_lb_target_group" "app" {
     timeout             = "10"
     path                = var.health_check_path
     unhealthy_threshold = "2"
+  }
+  tags = {
+    Name = "${var.project}-target-group"
   }
 }
 

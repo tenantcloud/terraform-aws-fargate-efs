@@ -26,6 +26,10 @@ resource "aws_security_group" "lb" {
     to_port     = 0
     cidr_blocks = ["0.0.0.0/0"]
   }
+
+  tags = {
+    Name = join("-", [var.project, "load-balancer-security-group"])
+  }
 }
 
 # Traffic to the ECS cluster should only come from the ALB
@@ -47,6 +51,10 @@ resource "aws_security_group" "ecs_tasks" {
     from_port   = 0
     to_port     = 0
     cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = join("-", [var.project, "ecs-tasks-security-group"])
   }
 }
 

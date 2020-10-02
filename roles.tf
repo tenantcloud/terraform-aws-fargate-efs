@@ -17,6 +17,10 @@ data "aws_iam_policy_document" "ecs_task_execution_role" {
 resource "aws_iam_role" "ecs_task_execution_role" {
   name               = "${var.project}EcsTaskExecutionRole"
   assume_role_policy = data.aws_iam_policy_document.ecs_task_execution_role.json
+
+  tags = {
+    Name = join("-", [var.project, "EcsTaskExecutionRole"])
+  }
 }
 
 # ECS task execution role policy attachment

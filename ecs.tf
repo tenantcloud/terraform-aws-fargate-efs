@@ -1,5 +1,8 @@
 resource "aws_ecs_cluster" "main" {
   name = "${var.project}-cluster"
+  tags = {
+    Name = "${var.project}-cluster"
+  }
 }
 
 # data "template_file" "app" {
@@ -88,4 +91,8 @@ resource "aws_ecs_service" "main" {
   }
 
   depends_on = [aws_lb_listener.front_end_https, aws_iam_role_policy_attachment.ecs_task_execution_role]
+
+  tags = {
+    Name = "${var.project}-service"
+  }
 }
