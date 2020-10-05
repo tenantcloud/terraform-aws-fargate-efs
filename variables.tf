@@ -97,3 +97,7 @@ variable "file_system_id" {
 variable "access_point_id" {
   default = ""
 }
+
+variable "cluster_name" {
+  default = ""
+}

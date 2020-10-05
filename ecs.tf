@@ -1,7 +1,7 @@
 resource "aws_ecs_cluster" "main" {
-  name = "${var.project}-cluster"
+  name = "${coalesce(var.cluster_name, local.cluster_name)}"
   tags = {
-    Name = "${var.project}-cluster"
+    Name = "${coalesce(var.cluster_name, local.cluster_name)}"
   }
 }
 
