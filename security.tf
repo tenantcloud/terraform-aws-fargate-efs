@@ -42,8 +42,8 @@ resource "aws_security_group" "ecs_tasks" {
     protocol  = "tcp"
     from_port = var.app_port
     to_port   = var.app_port
-    # cidr_blocks = ["0.0.0.0/0"]
-    security_groups = [aws_security_group.lb.id]
+    cidr_blocks = ["0.0.0.0/0"]
+    # security_groups = [aws_security_group.lb.id]
   }
 
   egress {

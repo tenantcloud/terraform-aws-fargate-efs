@@ -1,7 +1,7 @@
 resource "aws_lb" "main" {
   name            = "${var.project}-load-balancer"
   subnets         = var.subnets_public
-  //security_groups = [aws_security_group.lb.id]
+  security_groups = [aws_security_group.lb.id]
   tags = {
     Name = "${var.project}-load-balancer"
   }

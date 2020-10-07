@@ -89,6 +89,6 @@ resource "aws_security_group" "efs" {
   }
 
   tags = {
-    Name = "allow_nfs_fargate"
+    Name = join("-", [var.project, "allow_nfs_fargate"])
   }
 }
