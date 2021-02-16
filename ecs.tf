@@ -5,19 +5,6 @@ resource "aws_ecs_cluster" "main" {
   }
 }
 
-# data "template_file" "app" {
-#   template = file("${path.module}/templates/ecs/app.json.tpl")
-
-#   vars = {
-#     app_image      = var.app_image
-#     app_port       = var.app_port
-#     fargate_cpu    = var.fargate_cpu
-#     fargate_memory = var.fargate_memory
-#     aws_region     = var.aws_region
-#     project        = var.project
-#   }
-# }
-
 resource "aws_ecs_task_definition" "app" {
   family                   = "${var.project}-app-task"
   execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
@@ -45,29 +32,26 @@ resource "aws_ecs_task_definition" "app" {
       {
         "containerPort": ${var.app_port},
         "hostPort": ${var.app_port}
-      }
-    ],
-    "mountPoints": [
+      },
       {
-        "readOnly": null,
-        "containerPath": "/app/storage/tmp",
-        "sourceVolume": "${var.project}-mp"
+        "containerPort": 22,
+        "hostPort": 22
       }
     ]
   }
 ]
 DEFINITION
 
-  volume {
-    name = join("-", [var.project, "mp"])
-    efs_volume_configuration {
-      file_system_id     = aws_efs_file_system.main.id
-      transit_encryption = "ENABLED"
-      authorization_config {
-        access_point_id = var.access_point_id
-      }
-    }
-  }
+  # volume {
+  #   name = join("-", [var.project, "mp"])
+  #   efs_volume_configuration {
+  #     file_system_id     = aws_efs_file_system.main.id
+  #     transit_encryption = "ENABLED"
+  #     authorization_config {
+  #       access_point_id = var.access_point_id
+  #     }
+  #   }
+  # }
 }
 
 resource "aws_ecs_service" "main" {

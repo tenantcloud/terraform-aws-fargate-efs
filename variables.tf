@@ -22,7 +22,7 @@ variable "az_count" {
 
 variable "app_image" {
   description = "Docker image to run in the ECS cluster"
-  default     = "963713796187.dkr.ecr.us-west-2.amazonaws.com/tenantcloud/www:latest"
+  default     = ""
 }
 
 variable "app_port" {
@@ -61,7 +61,7 @@ variable "fargate_memory" {
 }
 
 variable "dns_zone_id" {
-  default = "ZOAXSTCXROYYP"
+  default = ""
 }
 
 variable "certificate_arn" {
@@ -70,7 +70,7 @@ variable "certificate_arn" {
 }
 
 variable "domain_name" {
-  default = "promo.tenants.cloud"
+  default = ""
 }
 
 variable "project" {
