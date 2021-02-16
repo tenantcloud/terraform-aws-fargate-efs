@@ -1,6 +1,7 @@
-# AWS Fargate with (EFS)
+# AWS Fargate
 
 ![terraform v0.12.x](https://img.shields.io/badge/terraform-v0.12.x-brightgreen.svg)
+![terraform v0.13.x](https://img.shields.io/badge/terraform-v0.13.x-brightgreen.svg)
 
 Create `fargate.tf` file
 
