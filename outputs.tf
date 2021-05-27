@@ -10,6 +10,6 @@ output "cluster_name" {
   value = aws_ecs_cluster.main.name
 }
 
-# output "certificate_arn" {
-#   value = aws_acm_certificate.certificate.arn
-# }
+output "aws_load_balancer" {
+  value = aws_lb.main.arn
+}
