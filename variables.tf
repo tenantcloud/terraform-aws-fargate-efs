@@ -15,6 +15,11 @@ variable "aws_region" {
   default     = "us-west-2"
 }
 
+variable "region" {
+  description = "AWS Infrastructure Region"
+  default     = "us-west-2"
+}
+
 variable "az_count" {
   description = "Number of AZs to cover in a given region"
   default     = "2"
@@ -100,4 +105,12 @@ variable "access_point_id" {
 
 variable "cluster_name" {
   default = ""
+}
+
+variable "application_domain" {
+  default = ""
+}
+
+variable "fargate_service_name" {
+  default     = ""
 }

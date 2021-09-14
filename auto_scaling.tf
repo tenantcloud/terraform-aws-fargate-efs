@@ -55,12 +55,12 @@ resource "aws_appautoscaling_policy" "down" {
 resource "aws_cloudwatch_metric_alarm" "service_cpu_high" {
   alarm_name          = "${var.project}_cpu_utilization_high"
   comparison_operator = "GreaterThanOrEqualToThreshold"
-  evaluation_periods  = "2"
+  evaluation_periods  = "1"
   metric_name         = "CPUUtilization"
   namespace           = "AWS/ECS"
   period              = "60"
   statistic           = "Average"
-  threshold           = "65"
+  threshold           = "50"
 
   dimensions = {
     ClusterName = aws_ecs_cluster.main.name

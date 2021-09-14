@@ -55,7 +55,7 @@ DEFINITION
 }
 
 resource "aws_ecs_service" "main" {
-  name             = "${var.project}-service"
+  name             = "${var.fargate_service_name}"
   cluster          = aws_ecs_cluster.main.id
   task_definition  = aws_ecs_task_definition.app.arn
   desired_count    = var.app_count
@@ -77,6 +77,6 @@ resource "aws_ecs_service" "main" {
   depends_on = [aws_lb_listener.front_end_https, aws_iam_role_policy_attachment.ecs_task_execution_role]
 
   tags = {
-    Name = "${var.project}-service"
+    Name = "${var.project}-app"
   }
 }

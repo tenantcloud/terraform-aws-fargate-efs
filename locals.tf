@@ -1,3 +1,3 @@
 locals {
-  cluster_name = "${var.project}-cluster"
+  cluster_name = replace(var.domain_name, ".", "-")
 }
